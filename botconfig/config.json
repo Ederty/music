@@ -2,7 +2,6 @@
   "token": "",
   "prefix": "-",
   
-  
   "clientsettings": {
     "nodes": [
       {
@@ -17,5 +16,4 @@
     "clientSecret": "d7d29fb495ea4b319cd1d99d76ab4949",
     "clientID": "2ecc7e8dd9484217a4fe0f20fbce707d"
   }
-
 }
