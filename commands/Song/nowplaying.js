@@ -7,15 +7,13 @@ const {
   createBar,
   format
 } = require(`../../handlers/functions`);
-const disbut = require('discord-buttons');
 module.exports = {
   name: `nowplaying`,
   category: `Song`,
   aliases: [`np`,],
   description: `Shows what song Rythm is currently playing.`,
   usage: `nowplaying`,
-  run: async (client, message, args, cmduser, text, prefix, Discord) => {
-    disbut(client)
+  run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)
     .setColor('#FFFFFF')
@@ -39,39 +37,6 @@ module.exports = {
     if(player && channel.id !== player.voiceChannel)
       return message.channel.send(embed.setDescription(`:x: You need to be in the same voice channel as **${client.user.username}** to use this command`));
     //Send Information Message
-    let button = new disbut.MessageButton()
-    .setStyle('DANGER')
-    .setLabel('Skip')
-    .setCustomId('skip_button');
-
-    let button2 = new disbut.MessageButton()
-    .setStyle('SUCCESS')
-    .setLabel('Pause')
-    .setCustomId('pause_button');
-
-    let button3 = new disbut.MessageButton()
-    .setStyle('PRIMARY')
-    .setLabel('resume')
-    .setCustomId('resume_button');
-
-    let row = new disbut.MessageActionRow()
-    .addComponents(button, button2, button3);
-
-    client.on('clickButton', async(button) => {
-      const player = client.manager.players.get(message.guild.id);
-      player.stop();
-    });
-
-    client.on('clickButton', async(button2) => {
-      const player = client.manager.players.get(message.guild.id);
-      player.pause(true);
-    });
-
-    client.on('clickButton', async(button2) => {
-      const player = client.manager.players.get(message.guild.id);
-      player.pause(false);
-    });
-
     const nembed = new MessageEmbed()
     .setAuthor("Now Playing ♪", client.user.displayAvatarURL())
     .setThumbnail(`https://img.youtube.com/vi/${player.queue.current.identifier}/mqdefault.jpg`)

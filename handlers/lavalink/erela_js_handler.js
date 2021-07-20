@@ -26,7 +26,7 @@ module.exports = (client) => {
             nodes: config.clientsettings.nodes,
             plugins: [
                 new Spotify({
-                    clientID, //get a clientid from there: https://developer.spotify.com/dashboard
+                    clientID, 
                     clientSecret
                 }),
                 new Deezer()
@@ -52,10 +52,7 @@ module.exports = (client) => {
         })
         .on("playerMove", async (player, oldChannel, newChannel) => {
             if (!newChannel) {
-                /*let channel = await client.channels.fetch(player.voiceChannel)
-                client.channels.cache
-                    .get(player.textChannel)
-                    .send(`:x: Queue ended!\n:thumbsup: Left: **${channel.name}**`);*/
+               
                 player.destroy();
                 client.channels.cache.get(player.textChannel).messages.fetch(player.get("playermessage")).then(msg => {
                     msg.delete({
@@ -73,15 +70,10 @@ module.exports = (client) => {
             }
         })
         .on("trackStart", async (player, track) => {
-            //votes for skip --> 0
             player.set("votes", "0");
-            //set the vote of every user to FALSE so if they voteskip it will vote skip and not remove voteskip if they have voted before bruh
             for (const userid of client.guilds.cache.get(player.guild).members.cache.map(member => member.user.id))
                 player.set(`vote-${userid}`, false);
-            //set the previous track just have idk where its used ^-^
             player.set("previoustrack", track);
-            //increasing the stats of the BOT
-            //if pruning is enabled --> send the msg
             if (client.settings.get(player.guild, `pruning`))
                 client.channels.cache.get(player.textChannel).send(new MessageEmbed()
                 .setTitle(`Track started playing`)
@@ -90,40 +82,28 @@ module.exports = (client) => {
                 .setColor('FFFFFF')
                 .setFooter(client.user.username)
                 .setTimestamp()).then(msg => {
-                    //try to delete the old playingsongmsg informational track if not available / get able --> catch and dont crash
                     try {
                         if (player.get(`playingsongmsg`) && msg.id !== player.get(`playingsongmsg`).id)
                             player.get(`playingsongmsg`).delete().catch(e => console.log("couldn't delete message this is a catch to prevent a crash".grey));
                     } catch {
-                        /* */
+                       
                     }
-                    //set the old message information to a variable
                     player.set(`playingsongmsg`, msg)
                 })
         })
         .on("trackStuck", async (player, track, payload) => {
-
             player.stop();
             client.channels.cache
                 .get(player.textChannel)
                 .send(embed.setDescription(`:x: **\`${track.title}\`** got Stuck\n:thumbsup: Skipping it!`));
         })
         .on("trackError", async (player, track, payload) => {
-
             player.stop();
             client.channels.cache
                 .get(player.textChannel)
                 .send(embed.setDescription(`:x: **\`${track.title}\`** Errorred\n:thumbsup: Skipping it!`));
-
-
         })
         .on("queueEnd", async (player) => {
-
-            /*let channel = await client.channels.fetch(player.voiceChannel)
-            client.channels.cache
-                .get(player.textChannel)
-                .send(`:x: Queue ended!\n:thumbsup: Left: **${channel.name}**`);*/
-            //player.destroy();
 
         });
     client.once("ready", () => client.manager.init(client.user.id));
@@ -137,7 +117,6 @@ module.exports = (client) => {
                 if (channel.id === player.voiceChannel) player.destroy();
             }
         }
-
     })
     client.on("guildRemove", guild => {
 
@@ -146,6 +125,4 @@ module.exports = (client) => {
         if (guild.id == player.guild) player.destroy();
 
     })
-
-
 };
