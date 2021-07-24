@@ -32,7 +32,7 @@ client.cooldowns = new Discord.Collection();
   }
 });
 
-client.login(require("./botconfig/config.json").token);
+client.login(process.env.token);
 
 const Enmap = require("enmap");
 client.settings = new Enmap({
