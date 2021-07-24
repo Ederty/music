@@ -5,8 +5,8 @@
   "clientsettings": {
     "nodes": [
       {
-         "host": "localhost",
-         "port": 2333,
+         "host": "https://lavalink-repl.isaiahonename.repl.co",
+         "port": 443,
          "password": "youshallnotpass"
        }
      ]
