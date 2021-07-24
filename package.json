@@ -20,7 +20,6 @@
     "spotify-url-info": "^2.2.3"
   },
   "devDependencies": {
-    "ascii-table": "0.0.9",
-    "colors": "^1.4.0"
+    "ascii-table": "0.0.9"
   }
 }
