@@ -7,12 +7,12 @@ const {
   createBar,
   format
 } = require(`../../handlers/functions`);
+const {MessageButton, MessageActionRow} = require('discord-buttons');
 module.exports = {
   name: `nowplaying`,
   category: `Song`,
   aliases: [`np`,],
   description: `Shows what song Rythm is currently playing.`,
-  usage: `nowplaying`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)
@@ -43,9 +43,8 @@ module.exports = {
     .setColor("ffffff")
     .setDescription(`[${player.queue.current.title.split("[").join("\[").split("]").join("\]")}](${player.queue.current.uri})\n\n\`${createBar(player)}\`\n\n\`${format(player.position).split(" | ")[0]} / ${format(player.queue.current.duration).split(" | ")[0]}\`\n\n\`Requested by:\` ${player.queue.current.requester.username} (${player.queue.current.requester.tag})`)
 
-    message.channel.send(nembed, row).catch(e=>{
+    message.channel.send(nembed).catch(e=>{
       return message.channel.send("**:x: Your Dm's are disabled**")
     })    
-
   }
 };

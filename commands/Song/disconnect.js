@@ -5,7 +5,6 @@ module.exports = {
   category: `Queue`,
   aliases: [`dc`, "leave", "dis"],
   description: `Disconnects the bot from the voice channel it is in.`,
-  usage: `disconnect`,
   run: async (client, message, args, cmduser, text, prefix) => {
       const embed = new MessageEmbed()
       .setTitle(`Something went wrong!`)

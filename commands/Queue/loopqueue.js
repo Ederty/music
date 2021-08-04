@@ -3,7 +3,6 @@ module.exports = {
   category: `Queue`,
   aliases: [`qloop`, "lq", "queueloop", "loopqu", "loopq"],
   description: `Toggles looping for the whole queue.`,
-  usage: `loopqueue`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)
@@ -34,6 +33,11 @@ module.exports = {
       //change Queue Mode
       player.setQueueRepeat(!player.queueRepeat);
       //Send Success Message
-      return message.channel.send(`**${player.queueRepeat ? `:repeat: Queue loop enabled` : `:no_entry_sign: Disabled queue loop`}**`);
+      new MessageEmbed()
+      .setDescription(`**${player.queueRepeat ? `✅ Queue loop enabled` : `:no_entry_sign: Disabled queue loop`}**`)
+      .setColor('#FFFFFF')
+      .setFooter(client.user.username)
+      .setTimestamp()
+      return message.channel.send();
   }
 };

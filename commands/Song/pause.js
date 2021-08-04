@@ -1,9 +1,9 @@
+const {MessageEmbed} = require('discord.js')
 module.exports = {
   name: `pause`,
   category: `Song`,
   aliases: [`stop`],
   description: `Pauses the current playing track`,
-  usage: `pause`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)
@@ -37,7 +37,11 @@ module.exports = {
       //pause the player
       player.pause(true);
       //return success message
-     return message.channel.send(`**Paused :pause_button:**`);
+     return message.channel.send(new MessageEmbed()
+     .setDescription(`✅ Paused the player`)
+     .setColor('#FFFFFF')
+     .setFooter(client.user.username)
+     .setTimestamp());
 
   }
 };

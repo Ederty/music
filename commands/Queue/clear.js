@@ -3,7 +3,6 @@ module.exports = {
   category: `Queue`,
   aliases: [`clearqueue`, "clearqu", "clearq", "cl"],
   description: `Clears the whole queue`,
-  usage: `clearqueue`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)
@@ -34,6 +33,10 @@ module.exports = {
       //clear the QUEUE
       player.queue.clear();
       //Send Success Message
-      return message.channel.send(`**:boom: Cleared... :stop_button:**`);
+      return message.channel.send(new MessageEmbed()
+      .setDescription(`✅ Shuffling the queue`)
+      .setColor('#FFFFFF')
+      .setFooter(client.user.username)
+      .setTimestamp());
   }
 };

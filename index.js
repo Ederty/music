@@ -11,7 +11,7 @@ const client = new Discord.Client({
   disableEveryone: true,
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
 });
-
+require('discord-buttons')(client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.categories = fs.readdirSync("./commands/");
@@ -32,7 +32,7 @@ client.cooldowns = new Discord.Collection();
   }
 });
 
-client.login(process.env.token);
+client.login(require('./botconfig/config.json').token);
 
 const Enmap = require("enmap");
 client.settings = new Enmap({

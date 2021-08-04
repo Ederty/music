@@ -12,7 +12,7 @@ module.exports = {
   category: `Song`,
   aliases: [`fwd`, `seek`],
   description: `Forwards by a certain amount of time in the current track.`,
-  usage: `forward <time>`,
+  usage: `<time>`,
   run: async (client, message, args, cmduser, text, prefix) => {
       const embed = new MessageEmbed()
       .setTitle(`Something went wrong!`)

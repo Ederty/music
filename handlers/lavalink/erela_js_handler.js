@@ -7,9 +7,12 @@ const config = require("../../botconfig/config.json");
 const { MessageEmbed } = require("discord.js");
 const clientID = config.spotify.clientID;
 const clientSecret = config.spotify.clientSecret;
-const {format} = require('../../handlers/functions');
-const ee = require("../../botconfig/embed.json")
-module.exports = (client) => {
+const {format, swap_pages2} = require('../../handlers/functions');
+const ee = require("../../botconfig/embed.json");
+const {MessageButton, MessageActionRow} = require('discord-buttons');
+const pause = require('../../commands/Song/pause')
+const resume = require('../../commands/Song/resume')
+module.exports = (client, message) => {
     if (!clientID || !clientSecret) {
         client.manager = new Manager({
             nodes: config.clientsettings.nodes,
@@ -81,7 +84,7 @@ module.exports = (client) => {
                 .setDescription(`[${track.title}](${track.uri}) (${track.author}) - ${format(track.duration).split(" | ")[0]}`)
                 .setColor('FFFFFF')
                 .setFooter(client.user.username)
-                .setTimestamp()).then(msg => {
+                .setTimestamp(), row).then(msg => {
                     try {
                         if (player.get(`playingsongmsg`) && msg.id !== player.get(`playingsongmsg`).id)
                             player.get(`playingsongmsg`).delete().catch(e => console.log("couldn't delete message this is a catch to prevent a crash".grey));

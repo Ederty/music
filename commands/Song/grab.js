@@ -11,7 +11,6 @@ module.exports = {
   category: `Song`,
   aliases: [`save`, `yoink`],
   description: `Saves the current playing song to your Direct Messages`,
-  usage: `grab`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
       .setTitle(`Something went wrong!`)

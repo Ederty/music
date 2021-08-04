@@ -12,7 +12,7 @@ module.exports = {
   category: `Song`,
   aliases: [`rwd`],
   description: `Rewinds by a certain amount of time in the current track.`,
-  usage: `rewind <time>`,
+  usage: `<time>`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)
@@ -53,10 +53,14 @@ module.exports = {
       let seektime = player.position - Number(args[0]) * 1000;
       //if userinput is wrong correct it 
       if (seektime >= player.queue.current.duration - player.position || seektime < 0) 
-      return message.channel.send("**:x: Cannot rewind that far back in the song**")
+      return message.channel.send(embed.setDescription("**:x: Cannot rewind that far back in the song**"));
       //seek to the right time
       player.seek(Number(seektime));
       //Send Success Message
-      return message.channel.send(`**:musical_note: Set position to \`${format(player.position)}\` :fast_forward:**`);
+      return message.channel.send(new MessageEmbed()
+      .setDescription(`Rewinded position to \`${format(player.position)}\``)
+      .setColor('#FFFFFF')
+      .setFooter(client.user.username)
+      .setTimestamp());
   }
 };

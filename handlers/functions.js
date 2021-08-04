@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../botconfig/config.json");
+const {player} = require('../handlers/lavalink/erela_js_handler')
 module.exports = {
   getMember: function (message, toFind = "") {
     try {
@@ -224,18 +225,18 @@ module.exports = {
         if (reaction.emoji.name === reactionemojis[1] || reaction.emoji.id === reactionemojis[2]) {
           if (currentPage < embeds.length - 1) {
             currentPage++;
-            queueEmbed.edit(embeds[currentPage]);
+            queueEmbed.edit(embeds[currentPage])
           } else {
             currentPage = 0
-            queueEmbed.edit(embeds[currentPage]);
+            queueEmbed.edit(embeds[currentPage])
           }
         } else if (reaction.emoji.name === reactionemojis[0] || reaction.emoji.id === reactionemojis[0]) {
           if (currentPage !== 0) {
             --currentPage;
-            queueEmbed.edit(embeds[currentPage]);
+            queueEmbed.edit(embeds[currentPage])
           } else {
             currentPage = embeds.length - 1
-            queueEmbed.edit(embeds[currentPage]);
+            queueEmbed.edit(embeds[currentPage])
           }
         } else {
           collector.stop();

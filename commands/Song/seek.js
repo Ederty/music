@@ -12,7 +12,7 @@ module.exports = {
   category: `Song`,
   aliases: [``],
   description: `Seeks to a certain point in the current track.`,
-  usage: `seek <time>`,
+  usage: `<time>`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)
@@ -52,7 +52,16 @@ module.exports = {
         return message.channel.send(`**:x: Time cannot be longer than the song**`);
 
       player.seek(Number(args[0]));
+      new MessageEmbed()
+      .setDescription(`Forwarded position to \`${format(player.position)}\``)
+      .setColor('#FFFFFF')
+      .setFooter(client.user.username)
+      .setTimestamp()
 
-      return message.channel.send(`**:musical_note: Set position to \`${format(player.position)}\` :fast_forward:**`);
+      return message.channel.send(new MessageEmbed()
+      .setDescription(`Forwarded position to \`${format(player.position)}\``)
+      .setColor('#FFFFFF')
+      .setFooter(client.user.username)
+      .setTimestamp());
   }
 };

@@ -7,7 +7,7 @@ module.exports = {
   category: `Song`,
   aliases: [`ptop`, `pt`],
   description: `Adds a song with the given name/url on the top of the queue`,
-  usage: `playtop <link/query>`,
+  usage: `<link/query>`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)
@@ -38,35 +38,31 @@ module.exports = {
     if (player && botchannel && channel.id !== botchannel.id) {
       player.destroy();
     }
-    //IF YOUTUBE SEND INFO WITH YOUTUBE
-    if (message.content.includes("youtu")) {
-      //send searching
-      message.channel.send(`<:youtube:826100274095194132> **Searching** :mag_right: \`${args.join(" ")}\``)
-      //play the song from our playermanager
+    if(message.content.includes("youtu")){
+      message.channel.send(`<:YouTube1:846367668897316865> **Searching** :mag_right: \`${args.join(" ")}\``).then(msg => {
+        setTimeout(() => msg.delete(), 2000);
+      })
       playermanager(client, message, args, `play:youtube`);
-      //IF SPOTIFY SEARCH SEND INFO WITH SPOTIFY
-    } else if (message.content.includes("spotify")) {
-      //send searching
-      message.channel.send(`<:spotify:818555971873013761>**Searching** :mag_right: \`${args.join(" ")}\``)
-      //play the song from our playermanager
+    } else if(message.content.includes("spotify")){
+      message.channel.send(`<:SpotifyLogo:846367676934258748> **Searching** :mag_right: \`${args.join(" ")}\``).then(msg => {
+        setTimeout(() => msg.delete(), 2000);
+      })
       playermanager(client, message, args, `play:youtube`);
-      //IF SOUNDCLOUD SEARCH SEND INFO WITH SOUNDCLOUD
-    } else if (message.content.includes("soundcloud")) {
-      //send searching
-      message.channel.send(`<:soundcloud:818555972079321128> **Searching** :mag_right: \`${args.join(" ")}\``)
-      //play the song from our playermanager
+    } else if(message.content.includes("soundcloud")){
+      message.channel.send(`<:4678_SoundCloud:846368477669490689> **Searching** :mag_right: \`${args.join(" ")}\``).then(msg => {
+        setTimeout(() => msg.delete(), 2000);
+      })
       playermanager(client, message, args, `play:soundcloud`);
-      //ELSE SEND RYTHM INFO
-    } else if (message.content.includes("http")) {
-      //send searching
-      message.channel.send(`<:rythm:826519647347539990> **Searching** :mag_right: \`${args.join(" ")}\``)
-      //play the song from our playermanager
-      playermanager(client, message, args, `play:youtube`);
-    } else {
-      //send searching
-      message.channel.send(`<:youtube:826100274095194132> **Searching** :mag_right: \`${args.join(" ")}\``)
-      //play the song from our playermanager
-      playermanager(client, message, args, `play:youtube`);
-    }
+  } else if(message.content.includes("http")){
+    message.channel.send(`<:YouTube1:846367668897316865> **Searching** :mag_right: \`${args.join(" ")}\``).then(msg => {
+      setTimeout(() => msg.delete(), 2000);
+    })
+    playermanager(client, message, args, `play:youtube`);
+  } else {
+    message.channel.send(`<:YouTube1:846367668897316865> **Searching** :mag_right: \`${args.join(" ")}\``).then(msg => {
+      setTimeout(() => msg.delete(), 2000);
+    })
+    playermanager(client, message, args, `play:youtube`);
+  }
   }
 };

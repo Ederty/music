@@ -5,7 +5,6 @@ module.exports = {
   category: `Queue`,
   aliases: ["repeat"],
   description: `Toggles looping for the current playing song.`,
-  usage: `loop`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)

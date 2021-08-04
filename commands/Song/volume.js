@@ -8,7 +8,7 @@ module.exports = {
   category: `Song`,
   aliases: [`vol`],
   description: `Changes the Volume`,
-  usage: `volume <0-150>`,
+  usage: `<0-150>`,
   parameters: {"type":"music", "activeplayer": true, "previoussong": false},
   run: async (client, message, args, cmduser, text, prefix) => {
     try{

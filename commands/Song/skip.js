@@ -4,7 +4,6 @@ module.exports = {
   category: `Song`,
   aliases: [`next`, "s"],
   description: `Votes to skip the current playing song`,
-  usage: `skip`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
       .setTitle(`Something went wrong!`)
@@ -34,7 +33,11 @@ module.exports = {
     }
     player.stop();
 
-    return message.channel.send(`**:fast_forward: Skipped :thumbsup:**`);
+    return message.channel.send(new MessageEmbed()
+    .setDescription(`Skipped the current music playing`)
+    .setColor('#FFFFFF')
+    .setFooter(client.user.username)
+    .setTimestamp());
 
   }
 };

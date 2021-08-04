@@ -5,7 +5,7 @@ module.exports = {
     category: `Song`,
     aliases: [`find`],
     description: `Searches from Youtube for a song via your query and returns the top 10 results.`,
-    usage: `search <link/query>`,
+    usage: `<link/query>`,
     run: async (client, message, args, cmduser, text, prefix) => {
       const embed = new MessageEmbed()
       .setTitle(`Something went wrong!`)

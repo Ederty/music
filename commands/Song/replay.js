@@ -12,7 +12,6 @@ module.exports = {
   category: `Song`,
   aliases: [``],
   description: `Resets the progress of the current song.`,
-  usage: `replay`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)

@@ -1,9 +1,9 @@
+const {MessageEmbed} = require('discord.js')
 module.exports = {
   name: `shuffle`,
   category: `Queue`,
   aliases: [`mix`, "random"],
   description: `Shuffles the Queue`,
-  usage: `shuffle`,
   run: async (client, message, args, cmduser, text, prefix) => {
     const embed = new MessageEmbed()
     .setTitle(`Something went wrong!`)
